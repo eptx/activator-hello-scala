@@ -14,6 +14,6 @@ class Test08 extends FlatSpec with ShouldMatchers with WebBrowser {
 	click on "twotabsearchtextbox"
 	textField("twotabsearchtextbox").value = "Scala"
 	submit()
-	title should be ("Amazon.com: Scala")
+	pageTitle should be ("Amazon.com: Scala")
 	pageSource should include("Scala Cookbook: Recipes")
 }

@@ -11,7 +11,7 @@ resolvers += "spray repo" at "http://nightlies.spray.io"
 resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies ++= Seq(
-	 "org.scalatest"						%		"scalatest_2.10" 	%	"2.0.M5b"				%	"test"
+	 "org.scalatest"						%		"scalatest_2.10" 	%	"2.0.M6"				%	"test"
 	,"org.specs2" 							%%	"specs2" 					%	"2.1.1"					%	"test"
 	,"org.seleniumhq.selenium"	%		"selenium-java" 	%	"2.33.0"				%	"test"
 	,"org.testng"								%		"testng"					%	"5.14.9"				%	"test"

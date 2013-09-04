@@ -6,43 +6,46 @@ import json._
 //import binary._
 
 
+case class Acct(val id: Int)
+case class Client(val name: String, val accts: List[Acct])
+
 class Test12 extends FunSuite {
-	test("Basic Pickle, unpickle") {
+	test("Pickle, unpickle") {
 		val xi = (1 to 5).toList
 		val xip = xi.pickle
 		println(xip)
+		assert(xi === xip.unpickle[List[Int]])
+		
 		val xc = ('a' to 'd').toList
 		val xcp = xc.pickle
 		println(xcp)
+		assert(xc === xcp.unpickle[List[Char]])	
 		
-		assert(xi === xip.unpickle[List[Int]])
-		assert(xc === xcp.unpickle[List[Char]])
-	}
-	
-	/*
-	test("Tree Pickle, unpickle") {
+		val al:List[Acct] = genAccts(5)
+		println(al.pickle)
+		assert(al === al.pickle.unpickle[List[Acct]])	
 		
-		val clients: List[Client] = List(
-			Client("a",List(Account("1"))),
-			Client("b",List(Account("1")))
+		val c1 = Client("My Client",genAccts(3))
+		println(c1.pickle)
+		assert(c1 === c1.pickle.unpickle[Client])
+		
+		val clients = List(
+			Client("Client 1",genAccts(3)),
+			Client("Client 2",genAccts(2)),
+			Client("Client 3",genAccts(5))
 		)
-		
-		/*for {
-			n <- List("a","b","c")
-		} yield Client(n, List(Account("checking"),Account("savings")))
-		*/
-		val clientsPickle = clients.pickle
-		
-		println(clientsPickle)
-		
-		val clientsRestored = clientsPickle.unpickle[List[Client]]
-		
-		//assert(clients === clientsRestored)
-		
+		println(clients.pickle)
+		assert(clients === clients.pickle.unpickle[List[Client]])
 	}
-	*/
 	
+	val count = 10
+	val clients = (for{c <- (1 to count)} yield Client("Client "+c,genAccts(3))).toList
+	
+	test("Large Pickle, unpickle") {	
+		assert(clients === clients.pickle.unpickle[List[Client]])	
+	}
+	
+	def genAccts(n: Int):List[Acct] = {
+		(for{a <- (1 to n)} yield Acct(a)).toList			
+	}
 }
-
-case class Account(val id: String)
-case class Client(val name: String, val accounts: List[Account])

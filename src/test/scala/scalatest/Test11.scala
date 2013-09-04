@@ -42,11 +42,11 @@ class Test11 extends FunSuite with BeforeAndAfterAll {
 			}
 		}
 	
-	override def beforeAll(configMap: Map[String,Any]) {
+	override def beforeAll() {
 		Server	
 	}
 
-	override def afterAll(configMap: Map[String,Any]) {
+	override def afterAll() {
 		system.scheduler.scheduleOnce(5.second)(system.shutdown())(system.dispatcher)
 	}
 }

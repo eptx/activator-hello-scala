@@ -4,7 +4,7 @@ import akka.actor.ActorSystem
 import akka.actor.Actor
 import akka.actor.Props
 import akka.testkit.TestKit
-import org.scalatest.WordSpec
+import org.scalatest.WordSpecLike
 import org.scalatest.matchers.MustMatchers
 import org.scalatest.BeforeAndAfterAll
 import akka.testkit.ImplicitSender
@@ -42,7 +42,7 @@ object Setup {
 
 
 class Test09(asys: ActorSystem) extends TestKit(asys) with ImplicitSender
-	with WordSpec with MustMatchers with BeforeAndAfterAll {
+	with WordSpecLike with MustMatchers with BeforeAndAfterAll {
  
 	import Setup._
 	def this() = this(ActorSystem("Setup"))
