@@ -23,9 +23,7 @@ libraryDependencies ++= Seq(
 	,"io.spray" 								% 	"spray-can" 			% "1.2-20130822"
 	,"io.spray" 								% 	"spray-routing" 	% "1.2-20130822"
 	,"io.spray" 								% 	"spray-client"		% "1.2-20130822"
-	//,"org.scalamock" 						%%	"scalamock-scalatest-support" % "3.0.1" % "test"
 	,"org.scala-lang" 					%% "scala-pickling" 	% "0.8.0-SNAPSHOT"
-	//,"com.rabbitmq"						%		"amqp-client"			% "3.1.5"
 )
 
 //-oD to show test duration

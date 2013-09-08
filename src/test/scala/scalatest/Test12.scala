@@ -38,14 +38,15 @@ class Test12 extends FunSuite {
 		assert(clients === clients.pickle.unpickle[List[Client]])
 	}
 	
-	val count = 10
-	val clients = (for{c <- (1 to count)} yield Client("Client "+c,genAccts(3))).toList
-	
-	test("Large Pickle, unpickle") {	
-		assert(clients === clients.pickle.unpickle[List[Client]])	
+	/*
+	ignore("Large Pickle, unpickle") {
+		val count = 10
+		val clients: List[Client] = (for{c <- (1 to count)} yield Client("Client "+c,genAccts(3))).toList	
+		//assert(clients(5) === clients.pickle.unpickle[List[Client]](5))	
 	}
-	
+	*/
 	def genAccts(n: Int):List[Acct] = {
+		println("accts:$n")
 		(for{a <- (1 to n)} yield Acct(a)).toList			
 	}
 }

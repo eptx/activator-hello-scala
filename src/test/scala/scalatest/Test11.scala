@@ -1,31 +1,32 @@
 package scalatest
 
 import org.scalatest._
+import org.scalatest.concurrent._
 import akka.actor._
 import scala.concurrent._
 import scala.concurrent.duration._
 
-class Test11 extends FunSuite with BeforeAndAfterAll {
+class Test11 extends FunSuite with BeforeAndAfterAll with org.scalatest.concurrent.Futures {
 	
 	test("Spray Http Client, Akka, Futures") {
+		//client imports
 		import spray.http._
 		import spray.client.pipelining._
 		import system.dispatcher
-
-		val pipeline: HttpRequest => Future[HttpResponse] = sendReceive
-		val response: Future[HttpResponse] = pipeline(Get(s"http://localhost:${_port}/hello"))
-		response onSuccess {
-			case HttpResponse(status,httpEntity,headers,protocol) => 
-				assert(httpEntity.asString === "hi")
-		}
-		shutdown()
+		import scala.util.{Success, Failure}
+		
+		//Pipe and request to send through it. Capture response as as Future[String]
+		val pipe: HttpRequest => Future[String] = ( sendReceive ~> unmarshal[String])
+		val response: Future[String] = pipe {Get(s"http://localhost:${_port}/hello")}
+		
+		//handle response
+		response onComplete { _.getOrElse("Error") }
+		
+		//block until response value, then assert
+		val value = Await.result(response,2.seconds)
+		assert(value === "hi")
 	}
-	
-	def shutdown(): Unit = {
-			system.scheduler.scheduleOnce(2.second)(system.shutdown())(system.dispatcher)
-	  }
-	
-	
+
 	//Spray server management
 	import spray.routing.SimpleRoutingApp
 
@@ -47,7 +48,7 @@ class Test11 extends FunSuite with BeforeAndAfterAll {
 	}
 
 	override def afterAll() {
-		system.scheduler.scheduleOnce(5.second)(system.shutdown())(system.dispatcher)
+		system.scheduler.scheduleOnce(2.second)(system.shutdown())(system.dispatcher)
 	}
 }
 
