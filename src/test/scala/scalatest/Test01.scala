@@ -7,7 +7,7 @@ class Test01 extends FunSuite {
   	assert(1 == 1)
 	}
   test("Another Very Basic") {
-  	assert("Hello World" == "Hi")
+  	assert("Hello World" == "Hello World")
 	}
 	
 }
