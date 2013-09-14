@@ -5,11 +5,15 @@
 <div>
     <h2>Start Testing!</h2>
 
-    <p>You've just created a basic Scala application and a bunch of tests to show off some of Scala's power. Here are some files to start with:
+    <p>You've just created a basic Scala application and a bunch of tests to show off some of Scala's power and some common test patters. Here are some files to start with:
 		<ul>
 			<li><a href="#code/src/main/scala/App.scala" class="shortcut">src/main/scala/App.scala</a> A simple app.</li>
 			<li><a href="#code/src/main/scala/App.scala" class="shortcut">src/main/scala/Account.scala</a> A domain class.</li>
 		</ul>
+	</p>
+	
+	<p>
+	Note that when you run the tests some will intentionally fail to show certain patterns and features.
 	</p>
 	
 	<h2>Test01</h2>
@@ -89,7 +93,7 @@
 	See <a href="#code/src/main/test/scala/scalatest/Test08.scala" class="shortcut">src/test/scala/scalatest/Test08.scala</a>
 	</p>
 	<p>
-	Here you see how use Selenium to automate otherwise tedious, error-prone, inconsistent browser testing. This example uses the ScalaTest Selenium DSL. But you can also use the standard Java API. This test will open up Firefox and search amazon for Scala books. Other browser drivers are available as well as a headless one HtmlUnitDriver. You could also incorporate custom reporting that snaps and stores a browser screen-shot on test failure.
+	Here you see how use Selenium to automate otherwise tedious, error-prone, inconsistent browser testing. This example uses the ScalaTest Selenium DSL. But you can also use the standard Java API. This test a headless brower HtmlUnitDriver for speed. However, you can change to one of several browser drivers, such as FirefoxDriver, to open and automate a FireFox browser. You could also incorporate custom reporting with this that snaps and stores a browser screen-shot on test failure.
 	</p>
 	
 	<h2>Test09</h2>
@@ -137,9 +141,8 @@
 	See <a href="#code/src/main/test/scala/scalatest/Test12.scala" class="shortcut">src/test/scala/scalatest/Test12.scala</a>
 	</p>
 	<p>
-	Scala is working on an automated serialization framework, aka pickling. It looks very powerful, flexible, and performant. See <a href="https://github.com/scala/pickling">scala/pickling</a> and be sure to look at the performance graphs. Also note that you can switch from json pickling to binary pickling by changing the <code>import json._ </code> to <code>import binary._ </code>.
-	</p>
-		
+Need to access a database in your test? Of course Scala database access via JDBC or other Java ORMs is available. But take a look at this Slick example and a new, clean way to access your database. In a single test we create and populate an in-memory SQL database, insert data, query data, and test the results. Think about how you might harness database access across tests. Now think about creating data driven tests that exercise UI, REST, business logic, and database for full integration and solution testing. Very powerful! For more info, check out <a href="http://http://slick.typesafe.com">Slick</a> from TypeSafe.
+	</p>	
 </div>
 </body>
 </html>

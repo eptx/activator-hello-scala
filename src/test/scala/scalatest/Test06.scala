@@ -4,7 +4,8 @@ import org.scalatest.FeatureSpec
 import org.scalatest.GivenWhenThen
 import scala.collection.mutable.Stack
 
-//see http://www.scalatest.org/getting_started_with_feature_spec 
+//Taken from http://www.scalatest.org/getting_started_with_feature_spec
+//Several test styles supported by ScalaTest
 class Test06 extends FeatureSpec with GivenWhenThen {
 
   feature("The user can pop an element off the top of the stack") {

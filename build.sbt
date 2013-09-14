@@ -10,8 +10,10 @@ resolvers += "spray repo" at "http://nightlies.spray.io"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
+unmanagedJars in Compile += Attributed.blank(file(System.getenv("JAVA_HOME") + "/jre/lib/jfxrt.jar"))
+
 libraryDependencies ++= Seq(
-	 "org.scalatest"						%		"scalatest_2.10" 	%	"2.0.M6"				%	"test"
+	 "org.scalatest"						%		"scalatest_2.10" 	%	"2.0.M7"				%	"test"
 	,"org.specs2" 							%%	"specs2" 					%	"2.1.1"					%	"test"
 	,"org.seleniumhq.selenium"	%		"selenium-java" 	%	"2.33.0"				%	"test"
 	,"org.testng"								%		"testng"					%	"5.14.9"				%	"test"
@@ -23,8 +25,11 @@ libraryDependencies ++= Seq(
 	,"io.spray" 								% 	"spray-can" 			% "1.2-20130822"
 	,"io.spray" 								% 	"spray-routing" 	% "1.2-20130822"
 	,"io.spray" 								% 	"spray-client"		% "1.2-20130822"
-	,"org.scala-lang" 					%% "scala-pickling" 	% "0.8.0-SNAPSHOT"
+	,"com.typesafe.slick"				%% "slick" 						% "1.0.1"
+  ,"org.slf4j" 								% "slf4j-nop" 				% "1.6.4"
+  ,"com.h2database" 					% "h2" 								% "1.3.166"
 )
+
 
 //-oD to show test duration
 testOptions in Test += Tests.Argument("-oD")

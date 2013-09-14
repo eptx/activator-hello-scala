@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver
 
 class Test08 extends FlatSpec with ShouldMatchers with WebBrowser {
 
-  implicit val webDriver: WebDriver = new FirefoxDriver
+  implicit val webDriver: WebDriver = new HtmlUnitDriver
 	go to "http://www.amazon.com" 
 	click on "twotabsearchtextbox"
 	textField("twotabsearchtextbox").value = "Scala"
