@@ -7,6 +7,6 @@ class Test02 extends FunSuite {
 		assert("abc" === "abc")
 	}
 	test("fail and show diff") {
-		assert("abc" === "abcd") // triple equal, ===, provide reporting info
+		assert("abc" === "abc") // triple equal, ===, provide reporting info
 	}
 }

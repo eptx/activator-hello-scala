@@ -7,18 +7,19 @@
 
     <p>You've just created a basic Scala application and a bunch of tests to show off some of Scala's power and some common test patters. Here are some files to start with:
 		<ul>
-			<li><a href="#code/src/main/scala/App.scala" class="shortcut">src/main/scala/Main.scala</a> A simple app.</li>
-			<li><a href="#code/src/main/scala/App.scala" class="shortcut">src/main/scala/Account.scala</a> A domain class.</li>
+			<li><a href="#code/src/main/scala/Main.scala" class="shortcut">src/main/scala/Main.scala</a> A simple app.</li>
+			<li><a href="#code/src/main/scala/Account.scala" class="shortcut">src/main/scala/Account.scala</a> A domain class.</li>
 		</ul>
 	</p>
 	
 	<p>
 	Note that when you run the tests some will intentionally fail to show certain patterns and features.
 	</p>
-	
+</div>
+<div>	
 	<h2>Test01</h2>
 	<p>
-	See <a href="#code/src/main/test/scala/scalatest/Test01.scala" class="shortcut">src/test/scala/scalatest/Test01.scala</a>
+	See <a href="#code/src/test/scala/scalatest/Test01.scala" class="shortcut">src/test/scala/scalatest/Test01.scala</a>
 	</p>
 	<p>
 	This is a simple test class that imports and uses ScalaTest FunSuite. More info on <a href="http://scalatest.org">ScalaTest</a>. Notice that
@@ -30,38 +31,45 @@
 	<code>
 	sbt>test-only scalatest.Test01
 	</code>
-	
+</div>
+<div>	
 	<h2>Test02</h2>
 	<p>
-	See <a href="#code/src/main/test/scala/scalatest/Test02.scala" class="shortcut">src/test/scala/scalatest/Test02.scala</a>
+	See <a href="#code/src/test/scala/scalatest/Test02.scala" class="shortcut">src/test/scala/scalatest/Test02.scala</a>
 	</p>
 	<p>
-	Some more simple tests but using assert with triple equal signs "===". Run the test to see the output. Notice the output for the failed test and how it shows the difference between what was expected and the actual as in assert(expected_value === actual_value).
+	Some more simple tests but using assert with triple equal signs "===". Run the test after changing the expected value to be different than the actual value. Notice the output for the failed test and how it shows the difference between what was expected and the actual as in assert(expected_value === actual_value).
 	</p>
-	
+</div>
+<div>	
 	<h2>Test03</h2>
 	<p>
-	See <a href="#code/src/main/test/scala/scalatest/Test03.scala" class="shortcut">src/test/scala/scalatest/Test03.scala</a>
+	See <a href="#code/src/test/scala/scalatest/Test03.scala" class="shortcut">src/test/scala/scalatest/Test03.scala</a>
 	</p>
 	<p>
-	In Test03 we introduce the "intercept" feature in ScalaTest. This is useful when you want to test the expectation of failure. intercept[IndexOutOfBoundsException]{} wraps code that should fail. In the first test, the code does not throw an IndexOutOfBounds Exception, so the test fails. In the second test, the code throws the exception as expected, the test passes.
+	In Test03 we introduce the "intercept" feature in ScalaTest. This is useful when you want to test the expectation of failure. intercept[IndexOutOfBoundsException]{} wraps code that should fail. In the first test, commented out, the code does not throw an IndexOutOfBounds Exception, so the test fails. In the second test, the code throws the exception as expected, the test passes.
 	</p>
-	
+</div>
+<div>	
 	<h2>Test04</h2>
 	<p>
-	See <a href="#code/src/main/test/scala/scalatest/Test04.scala" class="shortcut">src/test/scala/scalatest/Test04.scala</a>
+	See <a href="#code/src/test/scala/scalatest/Test04.scala" class="shortcut">src/test/scala/scalatest/Test04.scala</a>
 	</p>
 	<p>
 	In Test04 we see some of Scala's parallel processing ease. We create some test accounts then process them in serial in the first test, then in parallel in the second test. 
 	The parallel processing in the second test is enabled using parallel extension .par on the accounts collection. I'm using a machine with 4 cores. With a small sample set of say 20 accounts I get a 2.5x boost in parallel. With a larger set of say 100 accounts I get nearly a 4x boost parallel. I've written plenty of concurrent and parallel code with threads and thread pools...but never this simple.
 	</p>
-	
+</div>
+<div>	
 	<h2>Test05</h2>
 	<p>
-	See <a href="#code/src/main/test/scala/scalatest/Test05.scala" class="shortcut">src/test/scala/scalatest/Test05.scala</a>
+	See <a href="#code/src/test/scala/scalatest/Test05.scala" class="shortcut">src/test/scala/scalatest/Test05.scala</a>
 	</p>
 	<p>
 	In Test05 we start to have some fun with Data Driven Testing and Rule Composition.
+	</p>
+	<p>
+	Note: Expect failures in this test to show capability.
 	</p>
 	<p>
 	Data Driven Testing: We create some accounts and in a foreach loop a test for each account. Each test gets its own name. I could use .par as in the previous example to create test in parallel. Not much gate with that however in this case. Note that tests by default execute in parallel unless in build.sbt you set <code>parallelExecution in Test := false</code>. What if you had entities within entities within entities to test...could you nest loops for test creation? You bet. Data Driven testing is a very powerful
@@ -74,31 +82,34 @@
 	<p>
 	withClue: This helps you customize what information you provide for the particular audience or just to narrow down test failure searching.
 	</p>
-	
+</div>
+<div>	
 	<h2>Test06 and Test07</h2>
 	<p>
 	See 	<ul>
-			<li><a href="#code/src/main/test/scala/scalatest/Test06.scala" class="shortcut">src/test/scala/scalatest/Test06.scala</a></li>
-			<li><a href="#code/src/main/test/scala/scalatest/Test07.scala" class="shortcut">src/test/scala/scalatest/Test07.scala</a></li>
-			<li><a href="#code/src/main/test/scala/specs2/Test01.scala" class="shortcut">src/test/scala/specs2/Test01.scala</a></li>
+			<li><a href="#code/src/test/scala/scalatest/Test06.scala" class="shortcut">src/test/scala/scalatest/Test06.scala</a></li>
+			<li><a href="#code/src/test/scala/scalatest/Test07.scala" class="shortcut">src/test/scala/scalatest/Test07.scala</a></li>
+			<li><a href="#code/src/test/scala/specs2/Test01.scala" class="shortcut">src/test/scala/specs2/Test01.scala</a></li>
 		</ul>
 	</p>
 	<p>
 	Here you see how use ScalaTest in a specs-like approach. The example is taken from their site. It shows the flexibility of ScalaTest to support testing
 	in multiple paradigms. Also see the example of using Specs2, another great Scala testing framework. No problem using one, the other, or both in your testing
 	</p>
-	
+</div>
+<div>	
 	<h2>Test08</h2>
 	<p>
-	See <a href="#code/src/main/test/scala/scalatest/Test08.scala" class="shortcut">src/test/scala/scalatest/Test08.scala</a>
+	See <a href="#code/src/test/scala/scalatest/Test08.scala" class="shortcut">src/test/scala/scalatest/Test08.scala</a>
 	</p>
 	<p>
 	Here you see how use Selenium to automate otherwise tedious, error-prone, inconsistent browser testing. This example uses the ScalaTest Selenium DSL. But you can also use the standard Java API. This test a headless brower HtmlUnitDriver for speed. However, you can change to one of several browser drivers, such as FirefoxDriver, to open and automate a FireFox browser. You could also incorporate custom reporting with this that snaps and stores a browser screen-shot on test failure.
 	</p>
-	
+</div>
+<div>	
 	<h2>Test09</h2>
 	<p>
-	See <a href="#code/src/main/test/scala/scalatest/Test09.scala" class="shortcut">src/test/scala/scalatest/Test09.scala</a>
+	See <a href="#code/src/test/scala/scalatest/Test09.scala" class="shortcut">src/test/scala/scalatest/Test09.scala</a>
 	</p>
 	<p>
 	Actors are a very powerful part of the Scala platform to easily enable scalable, reliable, performant systems. Debugging concurrent, parallel, distributed systems can
@@ -109,10 +120,11 @@
 	In this test class you'll see how WordSpec in ScalaTest can be used to test a simple Echo Actor that returns the message sent to it. You'll also see a more interesting
 	actor called GeoActor that, given an address via the Address case class message, returns the lat-lon coordinates for that address. In this case the actors are embedded in the object Setup. In a real system these would be in a separate library. Note that these actors are running local in the same JVM instance as the tests. However, in a real test automation effort they may be running on a separate system including a cloud instance.
 	</p>
-	
+</div>
+<div>	
 	<h2>Test10</h2>
 	<p>
-	See <a href="#code/src/main/test/scala/scalatest/Test10.scala" class="shortcut">src/test/scala/scalatest/Test10.scala</a>
+	See <a href="#code/src/test/scala/scalatest/Test10.scala" class="shortcut">src/test/scala/scalatest/Test10.scala</a>
 	</p>
 	<p>
 	Reactive programming is an interesting approach with benefits in many solution spaces. Basically, variables automatically update themselves when values of other dependent variables change. So in this example variable "c" depends-on "a" and "b". If a or b change, c updates itself. Rather than having variables a and b track their "child" dependencies, the Rx library enables c to track its "parent" dependencies. Given this ability, the variables participate in a more event-driven approach. This is especially useful in UI programming where multiple UI elements are bound to a single variable and that variable may be updated in many ways.
@@ -120,10 +132,11 @@
 	<p>
 	So here's another example of kicking the tires on a library <a href="https://github.com/lihaoyi/scala.rx">Scala.Rx</a>. A future update here will likely spin up a ScalaFX UI demo. Stay tuned...
 	</p>
-	
+</div>
+<div>	
 	<h2>Test11</h2>
 	<p>
-	See <a href="#code/src/main/test/scala/scalatest/Test11.scala" class="shortcut">src/test/scala/scalatest/Test11.scala</a>
+	See <a href="#code/src/test/scala/scalatest/Test11.scala" class="shortcut">src/test/scala/scalatest/Test11.scala</a>
 	</p>
 	<p>
 	Let's kick the tires on a popular Scala web library called <a href="http://spray.io/">Spray</a>. In this test we spin up an async, actor-based server and then use a client with futures to exercise our simple REST API. Think about how to expand this test to add protected server resources and use basic authentication on the client to test access.
@@ -135,10 +148,11 @@
 	<p>
 	In your tests, you can spin up and connect to disparate systems to test integration. This test spins up a server and a client but just as well could spin up different or more systems to test. Note the beforeAll function kicks off "Server" and afterAll shuts it down. ScalaTest allows such "harnessing" per test or across the test class. You can create shared test fixtures as well.
 	</p>
-	
+</div>
+<div>	
 	<h2>Test12</h2>
 	<p>
-	See <a href="#code/src/main/test/scala/scalatest/Test12.scala" class="shortcut">src/test/scala/scalatest/Test12.scala</a>
+	See <a href="#code/src/test/scala/scalatest/Test12.scala" class="shortcut">src/test/scala/scalatest/Test12.scala</a>
 	</p>
 	<p>
 Need to access a database in your test? Of course Scala database access via JDBC or other Java ORMs is available. But take a look at this Slick example and a new, clean way to access your database. In a single test we create and populate an in-memory SQL database, insert data, query data, and test the results. Think about how you might harness database access across tests. Now think about creating data driven tests that exercise UI, REST, business logic, and database for full integration and solution testing. Very powerful! For more info, check out <a href="http://http://slick.typesafe.com">Slick</a> from TypeSafe.
